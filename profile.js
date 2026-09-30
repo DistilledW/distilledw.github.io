@@ -66,6 +66,7 @@ window.PROFILE = {
     { title: { zh: '开发工具', en: 'Engineering tools' }, items: ['Linux', 'Git', 'Docker', 'Conda', 'Shell'] }
   ],
   honors: [
+    { year: '2026', title: { zh: '上海交通大学硕士生国家奖学金', en: 'National Scholarship for Master’s Students · Shanghai Jiao Tong University' } },
     { year: '2023', title: { zh: 'CCF CSP 认证 · 300 分', en: 'CCF CSP Certification · 300 points' } },
     { year: '2022', title: { zh: '美国大学生数学建模竞赛 · S 奖', en: 'Mathematical Contest in Modeling · Successful Participant' } },
     { year: '2021', title: { zh: '蓝桥杯 · 省赛三等奖', en: 'Lanqiao Cup · Provincial Third Prize' } }
