@@ -2,7 +2,9 @@
 
 中英双语静态网站，用于展示个人介绍、教育履历、科研与实习经历。无需安装依赖或执行构建。
 
-发布后的预期地址：**https://distilledw.github.io/**。本地文件准备完成不代表网站已经上线。
+个人主页：**https://distilledw.github.io/** · [English](https://distilledw.github.io/?lang=en)
+
+源码仓库：[DistilledW/distilledw.github.io](https://github.com/DistilledW/distilledw.github.io)。GitHub Pages 使用 `main` 分支根目录发布，并已开启 HTTPS；推送更新后会自动重新构建。
 
 ## 本地预览
 
