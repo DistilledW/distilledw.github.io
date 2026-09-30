@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8f2">
+  <meta name="description" content="刘峥的个人主页：计算机体系结构、AI 系统、GPU 算子优化与软硬件协同设计。科研、教育与实习经历。">
+  <title>刘峥 · Zheng Liu | AI Systems & Architecture</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="profile.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">跳转至主要内容</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#about" class="brand" aria-label="Zheng Liu home"><span class="brand-mark">zl<span>.</span></span><span class="brand-name">ZHENG LIU</span></a>
+      <nav class="desktop-nav" aria-label="主导航" data-i18n-aria="navigation">
+        <a href="#research" data-i18n="navResearch">科研</a>
+        <a href="#experience" data-i18n="navExperience">实习</a>
+        <a href="#education" data-i18n="navEducation">教育</a>
+        <a href="#contact" data-i18n="navContact">联系</a>
+      </nav>
+      <div class="header-actions">
+        <button class="language-button" id="language-button" type="button" aria-label="Switch to English"><span aria-hidden="true">◎</span> <span id="language-label">EN</span></button>
+        <button class="resume-button" type="button" data-print><span data-i18n="resume">导出履历</span><span aria-hidden="true">↗</span></button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero content-width" id="about" aria-labelledby="hero-name">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span> AI SYSTEMS & COMPUTER ARCHITECTURE</p>
+        <h1 id="hero-name">刘峥 <span>Zheng Liu</span></h1>
+        <h2 class="hero-headline" id="headline"></h2>
+        <p class="hero-intro" id="intro"></p>
+        <div class="hero-links"><a class="button button-dark" href="#research"><span data-i18n="explore">探索我的研究</span><span aria-hidden="true">↓</span></a><a class="text-link" id="hero-github" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div>
+        <div class="interest-list" id="interests"></div>
+      </div>
+      <aside class="profile-card" aria-label="个人资料" data-i18n-aria="profile">
+        <div class="portrait-panel"><div class="portrait-grid" aria-hidden="true"></div><span class="portrait-index">RESEARCHER / ENGINEER</span><img id="portrait" src="assets/portrait.png" alt="刘峥" width="320" height="390" fetchpriority="high"><span class="portrait-corner" aria-hidden="true">↗</span></div>
+        <div class="profile-card-bottom"><div><span class="tiny-label" data-i18n="basedAt">教育背景</span><p id="affiliation"></p></div><span class="profile-emblem" aria-hidden="true">交<br>大</span></div>
+      </aside>
+    </section>
+    <div class="overview-strip content-width" aria-label="概览" data-i18n-aria="overview"><p data-i18n="overviewText">连接算法、系统与硬件。<br>从研究想法，走向真实计算。</p><div id="stats" class="stats"></div></div>
+    <section class="section content-width" id="research" aria-labelledby="research-title">
+      <div class="section-heading"><div><p class="eyebrow">01 / SELECTED RESEARCH</p><h2 id="research-title" data-i18n="researchTitle">科研工作<span class="accent">.</span></h2></div><p class="section-description" data-i18n="researchIntro">围绕智能计算的性能与能效，<br>探索算法与体系结构之间的设计空间。</p></div>
+      <div class="research-filters" role="group" aria-label="筛选研究" data-i18n-aria="filterLabel"><button type="button" data-filter="all" aria-pressed="true" data-i18n="filterAll">全部研究</button><button type="button" data-filter="architecture" aria-pressed="false" data-i18n="filterArchitecture">体系结构与系统</button><button type="button" data-filter="embodied" aria-pressed="false" data-i18n="filterEmbodied">具身智能</button><span class="result-count" id="result-count" role="status" aria-live="polite"></span></div>
+      <div class="research-list" id="research-list"></div>
+      <p class="research-note" data-i18n="researchNote">性能数据对应各研究工作的实验设置，具体基线与条件见论文。</p>
+    </section>
+    <section class="experience-section" id="experience" aria-labelledby="experience-title"><div class="content-width section"><div class="section-heading"><div><p class="eyebrow">02 / INDUSTRY EXPERIENCE</p><h2 id="experience-title" data-i18n="experienceTitle">实习经历<span class="accent">.</span></h2></div><p class="section-description" data-i18n="experienceIntro">在真实的工作负载中，<br>检验每一次性能优化。</p></div><div id="experience-list"></div></div></section>
+    <section class="section content-width" id="education" aria-labelledby="education-title"><div class="section-heading"><div><p class="eyebrow">03 / EDUCATION & TOOLKIT</p><h2 id="education-title" data-i18n="educationTitle">教育与积累<span class="accent">.</span></h2></div></div><div class="education-list" id="education-list"></div><div class="skills-heading"><h3 data-i18n="skillsTitle">技术工具箱</h3><span>TOOLS FOR BUILDING & EXPLORING</span></div><div class="skills-grid" id="skills-list"></div><div class="honors"><h3 data-i18n="honorsTitle">荣誉与认证</h3><div id="honors-list"></div></div></section>
+    <section class="contact-section content-width" id="contact" aria-labelledby="contact-title"><div class="contact-grid" aria-hidden="true"></div><div class="contact-copy"><p class="eyebrow">04 / GET IN TOUCH</p><h2 id="contact-title" data-i18n="contactTitle">让好的想法，<br>从一次交流开始。</h2><p data-i18n="contactIntro">欢迎交流计算机体系结构、AI 系统与 GPU 优化，<br>也期待科研合作与工作机会。</p></div><div class="contact-actions"><a id="email-link" class="contact-email"></a><div class="contact-buttons"><button id="copy-email" type="button"><span data-i18n="copyEmail">复制邮箱</span><span aria-hidden="true">⧉</span></button><a id="contact-github" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div><span class="copy-status" id="copy-status" role="status" aria-live="polite"></span></div></section>
+  </main>
+  <footer class="site-footer content-width"><a class="footer-brand" href="#about">zl.</a><p id="copyright"></p><a href="#about" data-i18n="backTop">返回顶部 ↑</a></footer>
+  <noscript><p class="noscript">请开启 JavaScript 查看完整的双语主页。Enable JavaScript to view the bilingual portfolio.</p></noscript>
+</body>
+</html>
