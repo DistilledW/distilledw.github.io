@@ -12,10 +12,10 @@
     zh: {
       skip: '跳转到主要内容', navigation: '主导航', profile: '个人资料',
       navAbout: '关于', navResearch: '科研', navExperience: '实习', navEducation: '教育', navHonors: '荣誉', navContact: '联系',
-      resume: '导出履历', researchTitle: '精选论文', experienceTitle: '实习经历', educationTitle: '教育背景',
+      resume: '简历 PDF', researchTitle: '精选论文', experienceTitle: '实习经历', educationTitle: '教育背景',
       honorsTitle: '荣誉与奖项', skillsTitle: '技能', contactTitle: '联系',
       contactIntro: '欢迎交流计算机体系结构、AI 系统与 GPU 优化，也欢迎科研合作与工作机会。',
-      emailLabel: '邮箱', cvLabel: '履历 / PDF', githubText: 'GitHub',
+      emailLabel: '邮箱', cvLabel: '简历 / PDF', githubText: 'GitHub',
       copyEmail: '复制邮箱', copied: '邮箱已复制', copyFallback: '请选择邮箱地址并复制，或点击地址发送邮件。',
       backTop: '回到顶部', paper: '论文', code: '代码', project: '项目',
       detailLabel: '研究要点', detailLabel2: '工作内容', equalContribution: '共同第一作者',
@@ -24,10 +24,10 @@
     en: {
       skip: 'Skip to main content', navigation: 'Main navigation', profile: 'Profile',
       navAbout: 'About', navResearch: 'Research', navExperience: 'Experience', navEducation: 'Education', navHonors: 'Honors', navContact: 'Contact',
-      resume: 'Print CV', researchTitle: 'Selected Publications', experienceTitle: 'Experience', educationTitle: 'Education',
+      resume: 'CV (中文)', researchTitle: 'Selected Publications', experienceTitle: 'Experience', educationTitle: 'Education',
       honorsTitle: 'Honors & Awards', skillsTitle: 'Skills', contactTitle: 'Contact',
       contactIntro: 'Happy to discuss computer architecture, AI systems, and GPU optimization. Open to research collaborations and career opportunities.',
-      emailLabel: 'Email', cvLabel: 'CV / PDF', githubText: 'GitHub',
+      emailLabel: 'Email', cvLabel: 'CV / PDF (Chinese)', githubText: 'GitHub',
       copyEmail: 'Copy email', copied: 'Email copied', copyFallback: 'Select the email address to copy it, or click it to send an email.',
       backTop: 'Back to top', paper: 'Paper', code: 'Code', project: 'Project',
       detailLabel: 'Research highlights', detailLabel2: 'What I worked on', equalContribution: 'Equal contribution',
@@ -58,7 +58,7 @@
       return ['https:', 'http:'].includes(url.protocol) ? url.href : '';
     } catch (_) { return ''; }
   };
-  const safeImage = (value) => {
+  const safeAssetUrl = (value) => {
     if (typeof value !== 'string' || !value.trim()) return '';
     try {
       const url = new URL(value, location.href);
@@ -79,7 +79,7 @@
     const c = copy[language];
     setHTML('#research-list', list(profile.research).map((work, index) => {
       const paperUrl = safeUrl(work.paper);
-      const figureUrl = safeImage(work.image);
+      const figureUrl = safeAssetUrl(work.image);
       const title = [work.name, work.title].filter(Boolean).join(': ');
       const equals = new Set(list(work.equalAuthors));
       const authors = list(work.authors).map((author) => {
@@ -124,7 +124,7 @@
   function openFigure(work, trigger) {
     const dialog = $('#figure-dialog');
     const image = $('#figure-image');
-    const imageUrl = safeImage(work.image);
+    const imageUrl = safeAssetUrl(work.image);
     if (!dialog || !image || !imageUrl || typeof dialog.showModal !== 'function') return;
     figureTrigger = trigger;
     image.src = imageUrl;
@@ -217,12 +217,21 @@
     if (secondaryIntro) secondaryIntro.hidden = !tr(profile.introSecondary);
     const portrait = $('#portrait');
     if (portrait) {
-      const source = safeImage(profile.portrait);
+      const source = safeAssetUrl(profile.portrait);
       portrait.hidden = !source;
       if (source) portrait.src = source;
       else portrait.removeAttribute('src');
       portrait.alt = tr(profile.name);
     }
+    const cvUrl = safeAssetUrl(profile.cv);
+    $$('[data-cv]').forEach((anchor) => {
+      anchor.hidden = !cvUrl;
+      if (cvUrl) {
+        anchor.href = cvUrl;
+        anchor.target = '_blank';
+        anchor.rel = 'noopener noreferrer';
+      } else anchor.removeAttribute('href');
+    });
     setHTML('#interest-list', list(profile.interests).map((interest) => `<li>${escape(tr(interest))}</li>`).join(''));
     renderResearch();
     renderExperience();
@@ -282,10 +291,6 @@
     render();
     scheduleNavigationUpdate();
   });
-  $$('[data-print]').forEach((button) => button.addEventListener('click', (event) => {
-    event.preventDefault();
-    window.print();
-  }));
   window.addEventListener('beforeprint', preparePrint);
   window.addEventListener('afterprint', restoreAfterPrint);
   $('#copy-email')?.addEventListener('click', async () => {

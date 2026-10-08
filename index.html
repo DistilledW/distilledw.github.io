@@ -6,10 +6,10 @@
   <meta name="theme-color" content="#ffffff">
   <meta name="description" content="刘峥，上海交通大学计算机科学与技术硕士研究生。研究方向包括计算机体系结构、AI 系统与 GPU 算子优化。">
   <title>刘峥 · Zheng Liu | AI Systems & Architecture</title>
-  <link rel="icon" href="assets/favicon.svg?v=20261008b" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20261008b">
-  <script src="profile.js?v=20261008b" defer></script>
-  <script src="app.js?v=20261008b" defer></script>
+  <link rel="icon" href="assets/favicon.svg?v=20261008c" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=20261008c">
+  <script src="profile.js?v=20261008c" defer></script>
+  <script src="app.js?v=20261008c" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">跳转至主要内容</a>
@@ -20,7 +20,7 @@
         <a href="#about" data-i18n="navAbout" aria-current="location">关于</a>
         <a href="#research" data-i18n="navResearch">科研</a>
         <a href="#experience" data-i18n="navExperience">经历</a>
-        <button type="button" data-print data-i18n="resume">履历</button>
+        <a data-cv href="assets/zheng-liu-cv.pdf?v=20261008c" target="_blank" rel="noopener noreferrer" data-i18n="resume">简历 PDF</a>
       </nav>
       <button class="language-button" id="language-button" type="button" aria-label="Switch to English"><span id="language-label">English</span></button>
     </div>
@@ -41,9 +41,9 @@
         <a id="hero-github" href="https://github.com/DistilledW" target="_blank" rel="noopener noreferrer">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.2 1.3-4.2-2-6-2.5M15 22v-3.4a3 3 0 0 0-.8-2.2c2.8-.3 5.8-1.4 5.8-6.2a4.8 4.8 0 0 0-1.3-3.3A4.5 4.5 0 0 0 18.6 3s-1.1-.3-3.6 1.3a12 12 0 0 0-6 0C6.5 2.7 5.4 3 5.4 3a4.5 4.5 0 0 0-.1 3.9A4.8 4.8 0 0 0 4 10.2c0 4.8 3 5.9 5.8 6.2a3 3 0 0 0-.8 2.2V22"/></svg><span>GitHub</span>
         </a>
-        <button id="sidebar-cv" type="button" data-print>
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H5v18h14V8zM14 3v5h5M8 12h8M8 16h6"/></svg><span data-i18n="cvLabel">个人履历</span>
-        </button>
+        <a id="sidebar-cv" data-cv href="assets/zheng-liu-cv.pdf?v=20261008c" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H5v18h14V8zM14 3v5h5M8 12h8M8 16h6"/></svg><span data-i18n="cvLabel">简历 / PDF</span>
+        </a>
       </div>
       <ul class="sidebar-interests" id="interest-list"></ul>
     </aside>

@@ -3,6 +3,7 @@ window.PROFILE = {
   name: { zh: '刘峥', en: 'Zheng Liu' },
   initials: 'ZL',
   github: 'https://github.com/DistilledW',
+  cv: 'assets/zheng-liu-cv.pdf?v=20261008c',
   email: 'distilledw@sjtu.edu.cn',
   portrait: 'assets/portrait.png',
   role: { zh: '硕士研究生', en: 'Master’s Student' },

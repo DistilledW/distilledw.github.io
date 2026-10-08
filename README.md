@@ -26,11 +26,13 @@ python -m http.server 4173 --bind 127.0.0.1
 
 `index.html` 是页面入口，`styles.css` 管理样式，`app.js` 管理交互，`assets/` 存放公开展示的资源。
 
-切换到希望导出的语言后，使用网站的打印功能或浏览器 `Ctrl+P`，选择“另存为 PDF”，即可导出网站履历。无需将私人原始简历放入公开仓库。
+点击“简历 PDF”会直接打开 `assets/zheng-liu-cv.pdf`：使用用户指定的最新版中文原简历，并在荣誉栏增加“上海交通大学2026年硕士生国家奖学金”，保持一页。中英文界面的 CV 入口指向同一份中文 PDF；之后更新简历时替换这个文件，并更新 `profile.js` 中 `cv` 的版本参数。
+
+浏览器 `Ctrl+P` 仍可打印完整网页；它与上述单页 PDF 是两个独立入口。
 
 ## 内容依据
 
-经历根据本地署名简历整理，网页未包含手机号。科研按钮链接到三篇论文的公开版本：[StreamGrid](https://arxiv.org/abs/2503.05197)、[Nebula](https://arxiv.org/abs/2512.20495)、[Deltoris](https://arxiv.org/abs/2608.04428)。Nebula 采用 ASPLOS 2026 正式标题，并提供项目和代码入口。
+经历根据本地署名简历整理，CV 使用用户指定的完整原简历。科研按钮链接到三篇论文的公开版本：[StreamGrid](https://arxiv.org/abs/2503.05197)、[Nebula](https://arxiv.org/abs/2512.20495)、[Deltoris](https://arxiv.org/abs/2608.04428)。Nebula 采用 ASPLOS 2026 正式标题，并提供项目和代码入口。
 
 Deltoris 按公开 PDF 标为“第一作者（共同第一）”。Nebula 的本地简历写有“共一”，但公开版本未找到对应标注，因此网页暂不显示其作者身份标签；确认后可在 `profile.js` 的 `role` 中补充。
 
