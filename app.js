@@ -89,15 +89,14 @@
       }).join(', ');
       const metrics = list(work.metrics).map((metric) => `<span class="metric-inline"><strong>${escape(metric.value)}</strong> ${escape(tr(metric.label))}</span>`).join('');
       const links = externalLink(work.paper, c.paper, 'paper') + externalLink(work.project, c.project, 'project') + externalLink(work.code, c.code, 'code');
-      const role = tr(work.role);
       const description = tr(work.description);
       const summary = tr(work.summary) || description;
       return `<article class="research-card${work.featured ? ' featured' : ''}${figureUrl ? '' : ' no-figure'}" id="paper-${escape(work.id || index)}">
         ${figureUrl ? `<figure class="paper-media"><button class="paper-preview" type="button" data-figure="${escape(work.id || index)}" aria-haspopup="dialog" aria-label="${escape(c.viewFigure.replace('{name}', work.name || ''))}"><img src="${escape(figureUrl)}" alt="${escape(tr(work.imageAlt))}" width="180" height="132" loading="lazy"></button></figure>` : ''}
         <div class="paper-content">
-        <div class="paper-meta"><span class="venue">${escape(work.venue)}</span>${role ? `<span class="author-role">${escape(role)}</span>` : ''}</div>
+        <div class="paper-meta"><span class="venue">${escape(work.venue)}</span></div>
         <h3 class="paper-title">${paperUrl ? `<a href="${escape(paperUrl)}" target="_blank" rel="noopener noreferrer">${escape(title)}</a>` : escape(title)}</h3>
-        ${authors ? `<p class="paper-authors">${authors}${equals.size && !role ? ` <span class="equal-contribution">(* ${escape(c.equalContribution)})</span>` : ''}</p>` : ''}
+        ${authors ? `<p class="paper-authors">${authors}</p>` : ''}
         ${summary ? `<p class="research-description">${escape(summary)}</p>` : ''}
         ${links ? `<div class="paper-links">${links}</div>` : ''}
         ${description || metrics ? `<details class="paper-details" data-details="research-${escape(work.id || index)}"><summary>${escape(c.detailLabel)}</summary><div class="paper-detail-content">${description ? `<p class="paper-abstract">${escape(description)}</p>` : ''}${metrics ? `<div class="paper-metrics">${metrics}</div>` : ''}</div></details>` : ''}
