@@ -5,16 +5,23 @@ window.PROFILE = {
   github: 'https://github.com/DistilledW',
   email: 'distilledw@sjtu.edu.cn',
   portrait: 'assets/portrait.png',
-  affiliation: { zh: '上海交通大学 · 计算机科学与技术', en: 'Computer Science · Shanghai Jiao Tong University' },
-  headline: { zh: ['从算法到架构，', '让智能计算更高效。'], en: ['From algorithms to architecture.', 'Making AI more efficient.'] },
+  role: { zh: '硕士研究生', en: 'Master’s Student' },
+  affiliation: { zh: '上海交通大学\n计算机科学与技术', en: 'Shanghai Jiao Tong University\nComputer Science' },
   intro: {
-    zh: '我是刘峥，研究兴趣集中在计算机体系结构、AI 系统与软硬件协同设计。我关注如何将算法中的结构与局部性，转化为真实系统中的性能与能效提升。',
-    en: 'I’m Zheng Liu. My interests lie in computer architecture, AI systems, and hardware–software co-design. I explore how algorithmic structure and locality can translate into faster, more energy-efficient systems.'
+    zh: '我是上海交通大学计算机科学与技术专业的硕士研究生。研究方向包括计算机体系结构、AI 系统与软硬件协同设计，关注 GPU 算子优化、大模型推理加速及具身智能的高效计算。',
+    en: 'I am a master’s student in Computer Science at Shanghai Jiao Tong University. My research spans computer architecture, AI systems, and hardware–software co-design, with a focus on GPU kernel optimization, efficient LLM inference, and embodied AI.'
   },
-  interests: ['AI Infrastructure', 'GPU Computing', 'Hardware–Software Co-design'],
+  introSecondary: {
+    zh: '曾在阿里巴巴控股平台技术 TRE 团队从事 AI Infrastructure 实习，参与 GPU 微架构分析与大模型推理优化。',
+    en: 'Previously, I was an AI Infrastructure intern with Alibaba’s Platform Technology TRE team, working on GPU microarchitecture analysis and LLM inference optimization.'
+  },
+  interests: ['AI Systems', 'GPU Computing', 'Computer Architecture'],
   research: [
     {
       id: 'deltoris', category: 'embodied', year: '2026', name: 'Deltoris', venue: 'MICRO 2026',
+      featured: true,
+      authors: ['Zheng Liu', 'Zeyu Guo', 'Zihan Liu', 'Anbang Wu', 'Han Zhao', 'Fangxin Liu', 'Zhezhi He', 'Yinhe Han', 'Jingwen Leng', 'Minyi Guo', 'Yiming Gan', 'Yu Feng'],
+      equalAuthors: ['Zheng Liu', 'Zeyu Guo'],
       role: { zh: '第一作者（共同第一）', en: 'First-listed co-first author' },
       title: 'Enabling Real-time VLA Inference in Embodied AI via Bit-level Sparsity and Speculative Inference',
       subtitle: { zh: '面向具身智能的实时 VLA 推理', en: 'Real-time VLA inference for embodied AI' },
@@ -24,6 +31,8 @@ window.PROFILE = {
     },
     {
       id: 'nebula', category: 'architecture', year: '2026', name: 'Nebula', venue: 'ASPLOS 2026',
+      authors: ['He Zhu', 'Zheng Liu', 'Xingyang Li', 'Anbang Wu', 'Jieru Zhao', 'Fangxin Liu', 'Yiming Gan', 'Jingwen Leng', 'Yu Feng'],
+      equalAuthors: [],
       role: { zh: '', en: '' },
       title: 'Infinite-Scale 3D Gaussian Splatting in VR via Collaborative Rendering and Accelerated Stereo Rasterization',
       subtitle: { zh: '城市级 3D Gaussian Splatting 的 VR 协同渲染', en: 'Collaborative 3D Gaussian Splatting for VR' },
@@ -33,6 +42,8 @@ window.PROFILE = {
     },
     {
       id: 'streamgrid', category: 'architecture', year: '2025', name: 'StreamGrid', venue: 'ASPLOS 2025',
+      authors: ['Yu Feng', 'Zheng Liu', 'Weikai Lin', 'Zihan Liu', 'Jingwen Leng', 'Minyi Guo', 'Zhezhi He', 'Jieru Zhao', 'Yuhao Zhu'],
+      equalAuthors: ['Yu Feng', 'Zheng Liu', 'Weikai Lin'],
       role: { zh: '共同第一作者', en: 'Co-first author' },
       title: 'Streaming Point Cloud Analytics via Compulsory Splitting and Deterministic Termination',
       subtitle: { zh: '面向不规则点云计算的流式加速架构', en: 'A streaming architecture for point cloud analytics' },

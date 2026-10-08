@@ -2,6 +2,8 @@
 
 中英双语静态网站，用于展示个人介绍、教育履历、科研与实习经历。无需安装依赖或执行构建。
 
+页面采用个人资料侧栏与论文正文的两栏结构，布局与配色参考 [Susav Shrestha 的主页](https://susavlsh10.github.io/)。论文包含完整作者列表和资源入口；研究要点与实习工作内容可展开查看，打印履历时自动展开。
+
 个人主页：**https://distilledw.github.io/** · [English](https://distilledw.github.io/?lang=en)
 
 源码仓库：[DistilledW/distilledw.github.io](https://github.com/DistilledW/distilledw.github.io)。GitHub Pages 使用 `main` 分支根目录发布，并已开启 HTTPS；推送更新后会自动重新构建。
