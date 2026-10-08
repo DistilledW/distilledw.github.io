@@ -2,7 +2,9 @@
 
 中英双语静态网站，用于展示个人介绍、教育履历、科研与实习经历。无需安装依赖或执行构建。
 
-页面采用个人资料侧栏与论文正文的两栏结构，布局与配色参考 [Susav Shrestha 的主页](https://susavlsh10.github.io/)。论文包含完整作者列表和资源入口；研究要点与实习工作内容可展开查看，打印履历时自动展开。
+页面采用个人资料侧栏与论文正文的两栏结构。参考 [Susav Shrestha](https://susavlsh10.github.io/) 的信息组织、[Tianqi Chen](https://tqchen.com/) 的简洁介绍和 [Philipp Krähenbühl](https://www.philkr.net/) 的论文图文列表，使用白底、深灰正文和统一的蓝色链接。
+
+论文展示完整作者、真实研究图与资源入口。点击配图可查看完整原图及出处；研究要点与实习工作内容可展开查看，打印履历时自动展开。
 
 个人主页：**https://distilledw.github.io/** · [English](https://distilledw.github.io/?lang=en)
 
@@ -31,6 +33,14 @@ python -m http.server 4173 --bind 127.0.0.1
 经历根据本地署名简历整理，网页未包含手机号。科研按钮链接到三篇论文的公开版本：[StreamGrid](https://arxiv.org/abs/2503.05197)、[Nebula](https://arxiv.org/abs/2512.20495)、[Deltoris](https://arxiv.org/abs/2608.04428)。Nebula 采用 ASPLOS 2026 正式标题，并提供项目和代码入口。
 
 Deltoris 按公开 PDF 标为“第一作者（共同第一）”。Nebula 的本地简历写有“共一”，但公开版本未找到对应标注，因此网页暂不显示其作者身份标签；确认后可在 `profile.js` 的 `role` 中补充。
+
+论文配图为公开原图，未重绘或裁剪：
+
+| 本地资源 | 原论文配图与出处 |
+| --- | --- |
+| `assets/deltoris.png` | Deltoris Fig. 12：[推测生成与批量验证](https://arxiv.org/html/2608.04428v1/speculative_inference.png) |
+| `assets/nebula.png` | Nebula Fig. 12：[双目投影与渲染](https://arxiv.org/html/2512.20495v1/stereo_vision.png) |
+| `assets/streamgrid.png` | StreamGrid Fig. 8：[点云分块与流水线](https://arxiv.org/html/2503.05197v2/split_example.png) |
 
 ## 发布到 GitHub Pages
 

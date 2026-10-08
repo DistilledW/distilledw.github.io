@@ -3,18 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#fafbfc">
+  <meta name="theme-color" content="#ffffff">
   <meta name="description" content="刘峥，上海交通大学计算机科学与技术硕士研究生。研究方向包括计算机体系结构、AI 系统与 GPU 算子优化。">
   <title>刘峥 · Zheng Liu | AI Systems & Architecture</title>
-  <link rel="icon" href="assets/favicon.svg?v=20261008" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20261008">
-  <script src="profile.js?v=20261008" defer></script>
-  <script src="app.js?v=20261008" defer></script>
+  <link rel="icon" href="assets/favicon.svg?v=20261008b" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=20261008b">
+  <script src="profile.js?v=20261008b" defer></script>
+  <script src="app.js?v=20261008b" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">跳转至主要内容</a>
   <header class="site-header">
     <div class="header-inner">
+      <a class="site-name" id="site-name" href="#about">Zheng Liu</a>
       <nav class="desktop-nav" aria-label="主导航" data-i18n-aria="navigation">
         <a href="#about" data-i18n="navAbout" aria-current="location">关于</a>
         <a href="#research" data-i18n="navResearch">科研</a>
@@ -85,6 +86,11 @@
       <footer class="site-footer"><p id="copyright"></p><a href="#about" data-i18n="backTop">返回顶部 ↑</a></footer>
     </main>
   </div>
+  <dialog class="figure-dialog" id="figure-dialog" aria-labelledby="figure-caption">
+    <button class="figure-close" id="figure-close" type="button" aria-label="关闭图片" data-i18n-aria="closeFigure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    <figure><img id="figure-image" alt=""><figcaption id="figure-caption"></figcaption></figure>
+    <a id="figure-source" target="_blank" rel="noopener noreferrer" data-i18n="imageSource" hidden>查看原始出处</a>
+  </dialog>
   <noscript><p class="noscript">请启用 JavaScript 查看完整的双语主页。Enable JavaScript to view the complete bilingual profile.</p></noscript>
 </body>
 </html>

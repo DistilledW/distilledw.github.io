@@ -20,6 +20,10 @@ window.PROFILE = {
     {
       id: 'deltoris', category: 'embodied', year: '2026', name: 'Deltoris', venue: 'MICRO 2026',
       featured: true,
+      image: 'assets/deltoris.png',
+      imageAlt: { zh: '小 VLA 模型推测生成动作，大 VLA 模型批量验证', en: 'Speculative action generation with a small VLA and batched verification with a large VLA' },
+      imageSource: 'https://arxiv.org/html/2608.04428v1/speculative_inference.png',
+      summary: { zh: '结合比特级差分、推测推理与专用加速架构，加速具身智能中的 VLA 模型。', en: 'Accelerating VLA models with bit-level sparsity, speculative inference, and hardware–software co-design.' },
       authors: ['Zheng Liu', 'Zeyu Guo', 'Zihan Liu', 'Anbang Wu', 'Han Zhao', 'Fangxin Liu', 'Zhezhi He', 'Yinhe Han', 'Jingwen Leng', 'Minyi Guo', 'Yiming Gan', 'Yu Feng'],
       equalAuthors: ['Zheng Liu', 'Zeyu Guo'],
       role: { zh: '第一作者（共同第一）', en: 'First-listed co-first author' },
@@ -31,6 +35,10 @@ window.PROFILE = {
     },
     {
       id: 'nebula', category: 'architecture', year: '2026', name: 'Nebula', venue: 'ASPLOS 2026',
+      image: 'assets/nebula.png',
+      imageAlt: { zh: '双目相机的投影关系与左右眼渲染结果', en: 'Stereo camera geometry and rendered left- and right-eye views' },
+      imageSource: 'https://arxiv.org/html/2512.20495v1/stereo_vision.png',
+      summary: { zh: '通过端云协同渲染与增量高斯传输，实现大规模 3DGS 场景的高效 VR 渲染。', en: 'Enabling large-scale 3D Gaussian Splatting in VR through cloud–device collaboration and incremental Gaussian transmission.' },
       authors: ['He Zhu', 'Zheng Liu', 'Xingyang Li', 'Anbang Wu', 'Jieru Zhao', 'Fangxin Liu', 'Yiming Gan', 'Jingwen Leng', 'Yu Feng'],
       equalAuthors: [],
       role: { zh: '', en: '' },
@@ -42,6 +50,10 @@ window.PROFILE = {
     },
     {
       id: 'streamgrid', category: 'architecture', year: '2025', name: 'StreamGrid', venue: 'ASPLOS 2025',
+      image: 'assets/streamgrid.png',
+      imageAlt: { zh: '点云分块策略与流水线：在保持精度的同时实现计算并行', en: 'Point cloud splitting and pipelining that preserve accuracy while enabling parallel processing' },
+      imageSource: 'https://arxiv.org/html/2503.05197v2/split_example.png',
+      summary: { zh: '将不规则点云搜索转为流式数据流，通过局部性分块与片上存储优化提升能效。', en: 'Turning irregular point cloud searches into a streaming dataflow with locality-aware splitting and optimized on-chip memory.' },
       authors: ['Yu Feng', 'Zheng Liu', 'Weikai Lin', 'Zihan Liu', 'Jingwen Leng', 'Minyi Guo', 'Zhezhi He', 'Jieru Zhao', 'Yuhao Zhu'],
       equalAuthors: ['Yu Feng', 'Zheng Liu', 'Weikai Lin'],
       role: { zh: '共同第一作者', en: 'Co-first author' },

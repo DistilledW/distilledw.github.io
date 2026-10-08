@@ -18,7 +18,8 @@
       emailLabel: '邮箱', cvLabel: '履历 / PDF', githubText: 'GitHub',
       copyEmail: '复制邮箱', copied: '邮箱已复制', copyFallback: '请选择邮箱地址并复制，或点击地址发送邮件。',
       backTop: '回到顶部', paper: '论文', code: '代码', project: '项目',
-      detailLabel: '研究要点', detailLabel2: '工作内容', equalContribution: '共同第一作者'
+      detailLabel: '研究要点', detailLabel2: '工作内容', equalContribution: '共同第一作者',
+      viewFigure: '查看 {name} 论文配图', imageSource: '查看原始出处', closeFigure: '关闭图片'
     },
     en: {
       skip: 'Skip to main content', navigation: 'Main navigation', profile: 'Profile',
@@ -29,7 +30,8 @@
       emailLabel: 'Email', cvLabel: 'CV / PDF', githubText: 'GitHub',
       copyEmail: 'Copy email', copied: 'Email copied', copyFallback: 'Select the email address to copy it, or click it to send an email.',
       backTop: 'Back to top', paper: 'Paper', code: 'Code', project: 'Project',
-      detailLabel: 'Research highlights', detailLabel2: 'What I worked on', equalContribution: 'Equal contribution'
+      detailLabel: 'Research highlights', detailLabel2: 'What I worked on', equalContribution: 'Equal contribution',
+      viewFigure: 'View {name} figure', imageSource: 'Original figure', closeFigure: 'Close figure'
     }
   };
   const icons = {
@@ -40,6 +42,7 @@
   let language = 'zh';
   let copyTimeout;
   let printSnapshot = null;
+  let figureTrigger = null;
   const queryLanguage = new URLSearchParams(location.search).get('lang');
   if (queryLanguage === 'zh' || queryLanguage === 'en') language = queryLanguage;
   else {
@@ -76,23 +79,29 @@
     const c = copy[language];
     setHTML('#research-list', list(profile.research).map((work, index) => {
       const paperUrl = safeUrl(work.paper);
+      const figureUrl = safeImage(work.image);
       const title = [work.name, work.title].filter(Boolean).join(': ');
       const equals = new Set(list(work.equalAuthors));
       const authors = list(work.authors).map((author) => {
         const name = String(author);
         const label = name === profile.name.en ? `<strong>${escape(name)}</strong>` : escape(name);
-        return `${label}${equals.has(name) ? `<sup title="${escape(c.equalContribution)}" aria-label="${escape(c.equalContribution)}">*</sup>` : ''}`;
+        return `<span class="paper-author">${label}${equals.has(name) ? `<sup title="${escape(c.equalContribution)}" aria-label="${escape(c.equalContribution)}">*</sup>` : ''}</span>`;
       }).join(', ');
       const metrics = list(work.metrics).map((metric) => `<span class="metric-inline"><strong>${escape(metric.value)}</strong> ${escape(tr(metric.label))}</span>`).join('');
       const links = externalLink(work.paper, c.paper, 'paper') + externalLink(work.project, c.project, 'project') + externalLink(work.code, c.code, 'code');
       const role = tr(work.role);
-      return `<article class="research-card${work.featured ? ' featured' : ''}" id="paper-${escape(work.id || index)}">
+      const description = tr(work.description);
+      const summary = tr(work.summary) || description;
+      return `<article class="research-card${work.featured ? ' featured' : ''}${figureUrl ? '' : ' no-figure'}" id="paper-${escape(work.id || index)}">
+        ${figureUrl ? `<figure class="paper-media"><button class="paper-preview" type="button" data-figure="${escape(work.id || index)}" aria-haspopup="dialog" aria-label="${escape(c.viewFigure.replace('{name}', work.name || ''))}"><img src="${escape(figureUrl)}" alt="${escape(tr(work.imageAlt))}" width="180" height="132" loading="lazy"></button></figure>` : ''}
+        <div class="paper-content">
         <div class="paper-meta"><span class="venue">${escape(work.venue)}</span>${role ? `<span class="author-role">${escape(role)}</span>` : ''}</div>
         <h3 class="paper-title">${paperUrl ? `<a href="${escape(paperUrl)}" target="_blank" rel="noopener noreferrer">${escape(title)}</a>` : escape(title)}</h3>
         ${authors ? `<p class="paper-authors">${authors}${equals.size && !role ? ` <span class="equal-contribution">(* ${escape(c.equalContribution)})</span>` : ''}</p>` : ''}
-        ${tr(work.description) ? `<p class="research-description">${escape(tr(work.description))}</p>` : ''}
+        ${summary ? `<p class="research-description">${escape(summary)}</p>` : ''}
         ${links ? `<div class="paper-links">${links}</div>` : ''}
-        ${metrics ? `<details class="paper-details" data-details="research-${escape(work.id || index)}"><summary>${escape(c.detailLabel)}</summary><div class="paper-detail-content">${metrics}</div></details>` : ''}
+        ${description || metrics ? `<details class="paper-details" data-details="research-${escape(work.id || index)}"><summary>${escape(c.detailLabel)}</summary><div class="paper-detail-content">${description ? `<p class="paper-abstract">${escape(description)}</p>` : ''}${metrics ? `<div class="paper-metrics">${metrics}</div>` : ''}</div></details>` : ''}
+        </div>
       </article>`;
     }).join(''));
   }
@@ -103,14 +112,48 @@
       const bullets = list(job.bullets).map((bullet) => `<li>${escape(tr(bullet))}</li>`).join('');
       const tags = list(job.tags).map((tag) => escape(tr(tag))).join(' · ');
       return `<article class="experience-card">
-        <div class="experience-date">${escape(job.period)}</div>
-        <div class="experience-content"><h3>${escape(tr(job.company))}${tr(job.role) ? `<span class="experience-separator"> · </span><span class="experience-role">${escape(tr(job.role))}</span>` : ''}</h3>
+        <div class="experience-content"><div class="record-header"><h3>${escape(tr(job.company))}${tr(job.role) ? `<span class="experience-separator"> · </span><span class="experience-role">${escape(tr(job.role))}</span>` : ''}</h3><div class="experience-date">${escape(job.period)}</div></div>
           ${tr(job.team) ? `<p class="team">${escape(tr(job.team))}</p>` : ''}
           ${tr(job.description) ? `<p class="experience-summary">${escape(tr(job.description))}</p>` : ''}
           ${bullets || tags ? `<details class="experience-details" data-details="experience-${index}"><summary>${escape(c.detailLabel2)}</summary>${bullets ? `<ul>${bullets}</ul>` : ''}${tags ? `<p class="experience-tags">${tags}</p>` : ''}</details>` : ''}
         </div>
       </article>`;
     }).join(''));
+  }
+
+  function openFigure(work, trigger) {
+    const dialog = $('#figure-dialog');
+    const image = $('#figure-image');
+    const imageUrl = safeImage(work.image);
+    if (!dialog || !image || !imageUrl || typeof dialog.showModal !== 'function') return;
+    figureTrigger = trigger;
+    image.src = imageUrl;
+    image.alt = tr(work.imageAlt);
+    setText('#figure-caption', `${work.name || ''} — ${tr(work.imageAlt)}`);
+    const source = $('#figure-source');
+    if (source) {
+      const sourceUrl = safeUrl(work.imageSource);
+      source.hidden = !sourceUrl;
+      source.textContent = copy[language].imageSource;
+      if (sourceUrl) {
+        source.href = sourceUrl;
+        source.target = '_blank';
+        source.rel = 'noopener noreferrer';
+      } else source.removeAttribute('href');
+    }
+    if (!dialog.open) dialog.showModal();
+    const closeButton = $('#figure-close');
+    if (closeButton) {
+      closeButton.setAttribute('aria-label', copy[language].closeFigure);
+      closeButton.focus({ preventScroll: true });
+    }
+  }
+
+  function closeFigure(focusTarget) {
+    const dialog = $('#figure-dialog');
+    if (!dialog?.open) return;
+    if (focusTarget) figureTrigger = focusTarget;
+    dialog.close();
   }
 
   function renderContact() {
@@ -165,6 +208,7 @@
     const otherLanguage = language === 'zh' ? 'en' : 'zh';
     setHTML('#hero-name', `${escape(tr(profile.name))} <span lang="${otherLanguage === 'zh' ? 'zh-CN' : 'en'}">${escape(profile.name[otherLanguage])}</span>`);
     setText('#sidebar-name', tr(profile.name));
+    setText('#site-name', profile.name.en);
     setText('#sidebar-role', tr(profile.role));
     setText('#affiliation', tr(profile.affiliation));
     setText('#intro', tr(profile.intro));
@@ -182,7 +226,7 @@
     setHTML('#interest-list', list(profile.interests).map((interest) => `<li>${escape(tr(interest))}</li>`).join(''));
     renderResearch();
     renderExperience();
-    setHTML('#education-list', list(profile.education).map((item) => `<article class="education-card"><div class="education-period">${escape(item.period)}</div><div class="education-content"><h3>${escape(tr(item.school))}</h3><p class="degree">${escape(tr(item.degree))}</p>${tr(item.note) ? `<p class="education-note">${escape(tr(item.note))}</p>` : ''}</div></article>`).join(''));
+    setHTML('#education-list', list(profile.education).map((item) => `<article class="education-card"><div class="education-content"><div class="record-header"><h3>${escape(tr(item.school))}</h3><div class="education-period">${escape(item.period)}</div></div><p class="degree">${escape(tr(item.degree))}</p>${tr(item.note) ? `<p class="education-note">${escape(tr(item.note))}</p>` : ''}</div></article>`).join(''));
     setHTML('#honors-list', list(profile.honors).map((item, index) => `<div class="honor${index === 0 ? ' highlighted' : ''}"><time>${escape(item.year)}</time><span class="honor-title">${escape(tr(item.title))}</span></div>`).join(''));
     setHTML('#skills-list', list(profile.skills).map((skill) => `<div class="skill-row"><h3>${escape(tr(skill.title))}</h3><p>${list(skill.items).map((item) => escape(tr(item))).join(', ')}</p></div>`).join(''));
     renderContact();
@@ -192,6 +236,7 @@
 
   function preparePrint() {
     if (printSnapshot) return;
+    closeFigure();
     printSnapshot = { title: document.title, details: detailsState() };
     document.title = `${tr(profile.name)} — ${language === 'zh' ? '个人履历' : 'CV'}`;
     $$('details[data-details]').forEach((element) => { element.open = true; });
@@ -204,7 +249,28 @@
     printSnapshot = null;
   }
 
+  $('#research-list')?.addEventListener('click', (event) => {
+    const trigger = event.target.closest?.('button[data-figure]');
+    if (!trigger || !event.currentTarget.contains(trigger)) return;
+    const work = list(profile.research).find((item, index) => String(item.id || index) === trigger.dataset.figure);
+    if (work) openFigure(work, trigger);
+  });
+  $('#figure-close')?.addEventListener('click', () => closeFigure());
+  $('#figure-dialog')?.addEventListener('click', (event) => {
+    const dialog = event.currentTarget;
+    if (event.target !== dialog) return;
+    const bounds = dialog.getBoundingClientRect();
+    const outside = event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom;
+    if (outside) closeFigure();
+  });
+  $('#figure-dialog')?.addEventListener('close', () => {
+    const target = figureTrigger;
+    figureTrigger = null;
+    if (target?.isConnected) target.focus({ preventScroll: true });
+  });
+
   $('#language-button')?.addEventListener('click', () => {
+    closeFigure($('#language-button'));
     language = language === 'zh' ? 'en' : 'zh';
     try { localStorage.setItem('portfolio-language', language); }
     catch (_) { /* Browser storage is optional. */ }
@@ -256,7 +322,8 @@
   const sections = $$('main section[id]').filter((section) => navigationLinks.some((link) => link.hash === `#${section.id}`));
   let navigationFrame = null;
   const updateActiveSection = () => {
-    const threshold = ($('.site-header')?.getBoundingClientRect().height ?? 0) + 32;
+    const scrollOffset = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+    const threshold = Math.max(($('.site-header')?.getBoundingClientRect().height ?? 0) + 20, scrollOffset) + 1;
     let activeSection = sections[0];
     for (const section of sections) {
       if (section.getBoundingClientRect().top <= threshold) activeSection = section;
